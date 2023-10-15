@@ -2,7 +2,7 @@ import logo from '../../assets/logo1.png';
 
 const Header = () => {
     const bgImg = {
-        backgroundImage: `url("/src/assets/15.jpg")`,
+        backgroundImage: `url("/src/assets/header-bg.jpg")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center"
