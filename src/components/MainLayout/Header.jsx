@@ -9,7 +9,7 @@ const Header = () => {
     }
 
     return (
-        <div style={bgImg} className='flex items-center justify-center gap-2 p-4'>
+        <div style={bgImg} className='flex items-center justify-center gap-2 p-3'>
             <img className='lg:w-14 w-10' src={logo} alt="" />
             <h1 className="font-rancho 2xl:text-5xl lg:text-4xl sm:text-3xl text-2xl text-white">Espresso Emporium</h1>
         </div>
