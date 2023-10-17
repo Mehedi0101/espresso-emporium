@@ -1,5 +1,6 @@
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
     const handleAddCoffee = e => {
@@ -7,13 +8,32 @@ const AddCoffee = () => {
         const form = e.target;
         const name = form.name.value;
         const chef = form.chef.value;
+        const price = form.price.value;
         const supplier = form.supplier.value;
         const taste = form.taste.value;
         const category = form.category.value;
         const details = form.details.value;
         const photo = form.photo.value;
 
-        console.log(name,chef,supplier,taste,category, details, photo);
+        const newCoffee = { name, chef, price, supplier, taste, category, details, photo }
+
+        fetch("http://localhost:5000/coffees", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Coffee Added Successfully',
+                    })
+                }
+            })
     }
     return (
         <div className="md:px-20 px-5 font-raleway">
@@ -23,32 +43,36 @@ const AddCoffee = () => {
             <form onSubmit={handleAddCoffee}>
                 <div className="mt-20 grid grid-cols-2 gap-x-5 gap-y-10">
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Name</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="name" placeholder="Enter coffee name" id="name" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="name">Name</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="name" placeholder="Enter coffee name" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Chef</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="chef" placeholder="Enter coffee chef" id="chef" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="chef">Chef</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="chef" placeholder="Enter coffee chef" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Supplier</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="supplier" placeholder="Enter coffee supplier" id="supplier" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="price">Price</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="price" placeholder="Enter price" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Taste</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="taste" placeholder="Enter coffee taste" id="taste" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="supplier">Supplier</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="supplier" placeholder="Enter coffee supplier" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Category</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="category" placeholder="Enter coffee category" id="category" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="taste">Taste</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="taste" placeholder="Enter coffee taste" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Details</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="details" placeholder="Enter coffee details" id="details" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="category">Category</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="category" placeholder="Enter coffee category" required />
                     </div>
                     <div>
-                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="">Photo</label>
-                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="photo" placeholder="Enter photo URL" id="photo" />
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="details">Details</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="details" placeholder="Enter coffee details" required />
+                    </div>
+                    <div>
+                        <label className="text-[#1b1a1acc] text-lg font-semibold" htmlFor="photo">Photo</label>
+                        <input className="w-full px-3 py-2 outline-none mt-2" type="text" name="photo" placeholder="Enter photo URL" required />
                     </div>
                 </div>
                 <input className="bg-[#D2B48C] text-[#242222] font-rancho text-2xl py-2 px-5 rounded border-2 border-[#331A15] hover:text-[#331A15] hover:bg-transparent transition-all active:scale-95 flex gap-2 items-center mx-auto mt-4 w-full cursor-pointer" type="submit" value="Add Coffee" />
