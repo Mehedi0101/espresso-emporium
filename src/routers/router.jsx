@@ -11,7 +11,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                loader: () => fetch('http://localhost:5000/coffees'),
+                loader: () => fetch('https://espresso-emporium-server-k6f3xpr0u-mehedih2909s-projects.vercel.app/coffees'),
                 element: <Home></Home>
             },
             {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/coffee-details/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/coffees/${params.id}`),
+                loader: ({params}) => fetch(`https://espresso-emporium-server-k6f3xpr0u-mehedih2909s-projects.vercel.app/coffees/${params.id}`),
                 element: <CoffeeDetails></CoffeeDetails>
             }
         ]
