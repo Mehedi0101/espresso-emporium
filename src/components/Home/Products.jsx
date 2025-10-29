@@ -12,8 +12,6 @@ const Products = () => {
 
     const [coffees, setCoffees] = useState(useLoaderData());
 
-    console.log(coffees);
-
     return (
         <div  style={bgImg} className="mt-20 min-h-[100vh] md:px-20 px-5 font-raleway">
             <h3 className="text-lg text-center text-[#1B1A1A] mb-1">--- Sip & Savor ---</h3>

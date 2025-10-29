@@ -17,7 +17,7 @@ const AddCoffee = () => {
 
         const newCoffee = { name, chef, price, supplier, taste, category, details, photo }
 
-        fetch("https://espresso-emporium-server-k6f3xpr0u-mehedih2909s-projects.vercel.app/coffees", {
+        fetch("https://espresso-emporium-server-six-kohl.vercel.app/coffees", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
